@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var socket = io.connect('http://' + document.domain + ':' + location.port + '/data');
+			socket.on('newnumber', function (msg) {
+				$('#current').html(msg.current + " Amps");
+				$('#power').html(msg.power + " Watts");
+				$('#voltage').html(msg.voltage + " Volts");
+			});
+		});
+	</script>
+	<style>
+	h1{
+		text-align:center;
+		font-size: 50px;
+		font-family:georgia;
+		color:#4f5d75;
+		text-shadow: 2px 2px 2px #2d3142;
+	}
+
+	h2{ 
+		text-align:center;
+		font-size:30px;
+                font-family:georgia;
+                color:#2d3142; }
+
+
+	#current, #power, #voltage {
+		font-size:40px;
+		max-width:100%;
+		margin: 10px;
+		align-content:center;
+		padding:45px;
+		text-align:center;
+		font-family:georgia;
+		vertical-align: middle;
+		color:#ffffff;
+	}
+	#current {
+		background-color:#2d3142;
+		border-color: #ffffff;
+		border-radius: 25px;
+	}
+	#power {
+		background-color:#4f5d75;
+		 border: 2px #C3C1C1;
+                 border-radius: 25px;
+	}
+	#voltage {
+		background-color:#ef8354;
+		 border: 2px #C3C1C1;
+                 border-radius: 25px;
+	}
+	.blurb{
+                text-align:center;
+		font-family:georgia;
+                color:#2d3142;
+		}
+		
+	</style>
+	<title>Capstone Project</title>
+</head>
+
+<body bgcolor= "C3C1C1">
+	<h1>Vertical-Axis Wind Turbine</h1>
+	<h2>We're generating:</h2>
+	<div id="current"></div>
+	<div id="power"></div>
+	<div id= "voltage"></div>
+	<h2>Our project: </h2>
+	<div class="blurb">Olivia Bearman and Lena Keesecker created this website as a part of their Capstone Engineering project. Using flask and socket.io, this page updates instantaneously with the data from our vertical axis wind turbine.</div>
+	<div class="blurb">Want to learn more about this project? Visit our <a href="http://wiki.chssigma.com/index.php?title=Vertical_Axis_Wind_Turbine">wiki page!</a></div>
+</body>
+
+</html>

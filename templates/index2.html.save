@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var socket = io.connect('http://' + document.domain + ':' + location.port + '/data');
+			socket.on('newnumber', function (msg) {
+				$('#current').html(msg.current + " Amps");
+				$('#power').html(msg.power + " Watts");
+				$('#voltage').html(msg.voltage + "Volts");
+			});
+		});
+	</script>
+	<style>
+	#current, #power, #voltage {
+		font-size:40px;
+		width:90%;
+		margin-left: auto;
+		margin-right:		padding:20px;
+		text-align:center;
+		font-family:georgia;
+		display:inline-block;
+	}
+	#current {
+		background-color:#FAC9B8;
+		border-radius:20px;
+		border: 6px solid "#DB8A74";
+	}
+	#power {
+		background-color:#4f5d75;
+	}
+	#voltage {
+		background-color:green;
+	}
+	</style>
+	<title>Capstone Project</title>
+</head>
+
+<body bgcolor= "C3C1C1">
+	<h1>Vertical-Axis Wind Turbine</h1>
+	<h3>We're generating:</h3>
+	<div id="current"></div>
+	<div id="power"></div>
+	<div id= "voltage"></div>
+</body>
+
+</html>
